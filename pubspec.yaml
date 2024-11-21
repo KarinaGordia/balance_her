@@ -78,8 +78,8 @@ flutter:
   fonts:
      - family: AppIcons
        fonts:
-         - asset: fonts/AppIcons.ttf
-     - family: San Francisco Pro Text
+         - asset: assets/fonts/AppIcons.ttf
+     - family: SanFranciscoProText
        fonts:
          - asset: assets/fonts/SFProText-Light.ttf
            weight: 300
