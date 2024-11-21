@@ -56,15 +56,14 @@ abstract class AppTheme {
       labelSmall: TextStyle(
           fontFamily: Fonts.sanFranciscoProText,
           fontWeight: FontWeight.w500,
-          fontSize: 10,
-          height: 14/10
+          fontSize: 14,
+          height: 20/14
       ),
     ),
   );
 }
 
 abstract class AppColors {
-  static const white = Color(0xffffffff);
   static const background = Color(0xfffaf6f0);
   static const surface = Color(0x14ffffff);
   static const onSurface = Color(0x33F2AA91);
