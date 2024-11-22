@@ -1,28 +1,24 @@
+import 'package:balance_her/ui/navigation/main_navigation.dart';
+import 'package:balance_her/ui/screens/onboarding/feature_overview_screen.dart';
+import 'package:balance_her/ui/screens/onboarding/start_screen.dart';
+import 'package:balance_her/ui/screens/onboarding/welcome_screen.dart';
 import 'package:balance_her/ui/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final mainNavigation = MainNavigation();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'BalanceHer',
-      home: const MyHomePage(),
+      theme: AppTheme.light,
+      initialRoute: mainNavigation.initialRoute,
+      routes: mainNavigation.routes,
+      onGenerateRoute: mainNavigation.onGenerateRoute,
+      // home: const WelcomeScreen(),
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold();
   }
 }
