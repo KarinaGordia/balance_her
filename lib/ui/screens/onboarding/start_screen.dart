@@ -1,4 +1,5 @@
 import 'package:balance_her/resources/resources.dart';
+import 'package:balance_her/ui/navigation/main_navigation.dart';
 import 'package:balance_her/ui/screens/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,7 @@ class StartScreen extends StatelessWidget {
       title: 'Start your journey to harmony today!',
       buttonLabel: 'Get started',
       onButtonPressed: () {
-        // Navigator.of(context).push(
-        //   MaterialPageRoute(
-        //     builder: (context) => const StartScreen(),
-        //   ),
-        // );
+        Navigator.of(context).pushReplacementNamed(Screens.mainTabs);
       },
     );
   }

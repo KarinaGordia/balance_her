@@ -8,6 +8,7 @@ abstract class AppColors {
   static const onPrimary = Color(0x6629282F);
   static const secondary = Color(0xff29282f);
   static const onSecondary = Color(0x66FAFAFA);
+  static const onSecondaryDark = Color(0x660C0818);
   static const outline8 = Color(0x1429282F);
   static const outline12 = Color(0x1E29282F);
   static const outline_2 = Color(0xfffd886e);
