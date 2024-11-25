@@ -24,16 +24,43 @@ class MainTabsScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: Padding(
-        padding:
-            const EdgeInsets.only(left: 32.0, right: 32,),
+        padding: const EdgeInsets.only(
+          left: 32.0,
+          right: 32,
+        ),
         child: NavigationBar(
           backgroundColor: Colors.transparent,
           labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+          indicatorColor: model.setIndicatorColor(),
           destinations: const [
-            NavigationDestination(icon: Icon(AppIcons.home), label: ''),
-            NavigationDestination(icon: Icon(AppIcons.cards_heart), label: ''),
-            NavigationDestination(icon: Icon(AppIcons.run), label: ''),
-            NavigationDestination(icon: Icon(AppIcons.settings), label: ''),
+            NavigationDestination(
+                icon: Icon(AppIcons.home),
+                selectedIcon: Icon(
+                  AppIcons.home,
+                  color: AppColors.surface,
+                ),
+                label: ''),
+            NavigationDestination(
+                icon: Icon(AppIcons.cards_heart),
+                selectedIcon: Icon(
+                  AppIcons.cards_heart,
+                  color: AppColors.surface,
+                ),
+                label: ''),
+            NavigationDestination(
+                icon: Icon(AppIcons.run),
+                selectedIcon: Icon(
+                  AppIcons.run,
+                  color: AppColors.surface,
+                ),
+                label: ''),
+            NavigationDestination(
+                icon: Icon(AppIcons.settings),
+                selectedIcon: Icon(
+                  AppIcons.settings,
+                  color: AppColors.surface,
+                ),
+                label: ''),
           ],
           selectedIndex: selectedIndex,
           onDestinationSelected: model.setCurrentTabIndex,
