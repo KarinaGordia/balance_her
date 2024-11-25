@@ -5,62 +5,59 @@ import 'package:flutter/material.dart';
 abstract class AppTheme {
   static final light = ThemeData(
     scaffoldBackgroundColor: AppColors.background,
+    navigationBarTheme: const NavigationBarThemeData(
+      iconTheme: WidgetStatePropertyAll(
+        IconThemeData(
+          color: AppColors.onSecondaryDark,
+        ),
+      ),
+    ),
     textTheme: const TextTheme(
       displayLarge: TextStyle(
           fontFamily: Fonts.sanFranciscoProText,
           fontWeight: FontWeight.w700,
           fontSize: 32,
-          height: 40/32
-      ),
+          height: 40 / 32),
       displayMedium: TextStyle(
           fontFamily: Fonts.sanFranciscoProText,
           fontWeight: FontWeight.w700,
           fontSize: 24,
-          height: 32/24
-      ),
+          height: 32 / 24),
       displaySmall: TextStyle(
-        fontFamily: Fonts.sanFranciscoProText,
-        fontWeight: FontWeight.w600,
-        fontSize: 18,
-        height: 24/18
-      ),
+          fontFamily: Fonts.sanFranciscoProText,
+          fontWeight: FontWeight.w600,
+          fontSize: 18,
+          height: 24 / 18),
       bodyLarge: TextStyle(
           fontFamily: Fonts.sanFranciscoProText,
           fontWeight: FontWeight.w600,
           fontSize: 16,
-          height: 22/16
-      ),
+          height: 22 / 16),
       bodyMedium: TextStyle(
           fontFamily: Fonts.sanFranciscoProText,
           fontWeight: FontWeight.w500,
           fontSize: 16,
-          height: 22/16
-      ),
+          height: 22 / 16),
       bodySmall: TextStyle(
           fontFamily: Fonts.sanFranciscoProText,
           fontWeight: FontWeight.w400,
           fontSize: 16,
-          height: 22/16
-      ),
+          height: 22 / 16),
       labelLarge: TextStyle(
           fontFamily: Fonts.sanFranciscoProText,
           fontWeight: FontWeight.w500,
           fontSize: 14,
-          height: 20/14
-      ),
+          height: 20 / 14),
       labelMedium: TextStyle(
           fontFamily: Fonts.sanFranciscoProText,
           fontWeight: FontWeight.w500,
           fontSize: 12,
-          height: 18/12
-      ),
+          height: 18 / 12),
       labelSmall: TextStyle(
           fontFamily: Fonts.sanFranciscoProText,
           fontWeight: FontWeight.w500,
           fontSize: 10,
-          height: 14/10
-      ),
+          height: 14 / 10),
     ),
   );
 }
-
