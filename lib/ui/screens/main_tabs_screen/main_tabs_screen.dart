@@ -1,5 +1,6 @@
 import 'package:balance_her/app_icons_icons.dart';
 import 'package:balance_her/ui/screens/main_tabs_screen/main_tabs_view_model.dart';
+import 'package:balance_her/ui/screens/tabs/tabs.dart';
 import 'package:balance_her/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,16 +13,22 @@ class MainTabsScreen extends StatelessWidget {
     final selectedIndex = context
         .select<MainTabsViewModel, int>((value) => value.currentTabIndex);
     final model = context.read<MainTabsViewModel>();
+    var primaryTabColor = model.setIndicatorColor();
     return Scaffold(
       extendBody: true,
-      body: IndexedStack(
-        index: selectedIndex,
-        children: const [
-          Text('main', style: TextStyle(color: Colors.red)),
-          Text('health', style: TextStyle(color: Colors.red)),
-          Text('habits', style: TextStyle(color: Colors.red)),
-          Text('settings', style: TextStyle(color: Colors.red)),
-        ],
+      body: SafeArea(
+        child: IndexedStack(
+          index: selectedIndex,
+          children: [
+            ChangeNotifierProvider(
+              create: (_) => MainScreenViewModel(),
+              child: MainScreen(primaryColor: primaryTabColor,),
+            ),
+            const Text('health', style: TextStyle(color: Colors.red)),
+            const Text('habits', style: TextStyle(color: Colors.red)),
+            const Text('settings', style: TextStyle(color: Colors.red)),
+          ],
+        ),
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(
@@ -31,7 +38,7 @@ class MainTabsScreen extends StatelessWidget {
         child: NavigationBar(
           backgroundColor: Colors.transparent,
           labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-          indicatorColor: model.setIndicatorColor(),
+          indicatorColor: primaryTabColor,
           destinations: const [
             NavigationDestination(
                 icon: Icon(AppIcons.home),

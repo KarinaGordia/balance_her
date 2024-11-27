@@ -5,6 +5,24 @@ import 'package:flutter/material.dart';
 abstract class AppTheme {
   static final light = ThemeData(
     scaffoldBackgroundColor: AppColors.background,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.background,
+      titleTextStyle: TextStyle(
+        color: AppColors.onPrimary,
+          fontFamily: Fonts.sanFranciscoProText,
+          fontWeight: FontWeight.w600,
+          fontSize: 18,
+          height: 24 / 18),
+    ),
+    chipTheme: ChipThemeData(
+      showCheckmark: false,
+      selectedColor: AppColors.blue,
+      backgroundColor: AppColors.surface,
+      side: BorderSide.none,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      labelPadding: EdgeInsets.zero,
+    ),
     navigationBarTheme: const NavigationBarThemeData(
       iconTheme: WidgetStatePropertyAll(
         IconThemeData(
