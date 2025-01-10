@@ -1,4 +1,3 @@
-import 'package:balance_her/app_icons_icons.dart';
 import 'package:balance_her/resources/resources.dart';
 import 'package:balance_her/ui/screens/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';

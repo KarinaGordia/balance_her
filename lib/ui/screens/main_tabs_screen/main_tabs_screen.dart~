@@ -82,8 +82,8 @@ class _MainTabsScreenState extends State<MainTabsScreen> {
                 ),
                 label: ''),
           ],
-          selectedIndex: _currentTabIndex,
-          onDestinationSelected: setCurrentTabIndex,
+          selectedIndex: selectedIndex,
+          onDestinationSelected: model.setCurrentTabIndex,
         ),
       ),
     );

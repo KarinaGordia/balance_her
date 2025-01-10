@@ -10,12 +10,12 @@ abstract class Screens {
 }
 
 class MainNavigation {
-  final initialRoute = Screens.onboarding;
-  // final initialRoute = Screens.mainTabs;
+  // final initialRoute = Screens.onboarding;
+  final initialRoute = Screens.mainTabs;
 
   Map<String, WidgetBuilder> get routes => <String, WidgetBuilder>{
     Screens.onboarding: (context) => const WelcomeScreen(),
-    Screens.mainTabs: (context) => ChangeNotifierProvider(
+    Screens.mainTabs: (context) => Provider(
       create: (_) => MainTabsViewModel(),
       child: const MainTabsScreen(),
     ),
