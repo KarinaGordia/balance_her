@@ -29,9 +29,24 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
-        title: const Text(
-          'Main',
-        ),
+        title: const Text('Main'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 11),
+            child: FilledButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(widget.primaryColor),),
+              child: Text(
+                'Add task',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: AppColors.surface),
+              ),
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -60,7 +75,9 @@ class _MainScreenState extends State<MainScreen> {
               changeableValue: selectedTaskDurationIndex,
               onSelected: model.setTaskDurationIndex,
             ),
-            const _TaskList(tasks: [],),
+            const _TaskList(
+              tasks: [],
+            ),
           ],
         ),
       ),
@@ -72,6 +89,7 @@ class _TaskList extends StatelessWidget {
   const _TaskList({super.key, required this.tasks});
 
   final List<String> tasks;
+
   //
   // Future<void> _showAddTaskDialog() async {
   //   return showDialog<void>(
@@ -102,34 +120,18 @@ class _TaskList extends StatelessWidget {
   // }
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        if(tasks.isEmpty)
-          const EmptyTabBanner(
-          imagePath: Images.home,
-          message:
-              'You don\'t have any tasks added,\nadd a task and it will appear here.',
-        ),
-        TextButton(
-          onPressed: () {},
-          child: Row(
-            children: [
-              const Icon(
-                Icons.add,
-                color: AppColors.blue,
-              ),
-              Text(
-                'Add task',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(color: AppColors.blue),
-              ),
-            ],
-          ),
-        )
-      ],
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          if (tasks.isEmpty)
+            const EmptyTabBanner(
+              imagePath: Images.home,
+              message:
+                  'You don\'t have any tasks added,\nadd a task and it will appear here.',
+            ),
+        ],
+      ),
     );
   }
 }
