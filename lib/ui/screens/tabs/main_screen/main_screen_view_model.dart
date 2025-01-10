@@ -18,9 +18,13 @@ class MainScreenViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<DailyTask> _dailyTasks = [];
-  List<WeeklyTask> _weeklyTasks = [];
+  List<Task> _dailyTasks = [];
+  List<Task> get dailyTasks => _dailyTasks;
+  List<Task> _weeklyTasks = [];
+  List<Task> get weeklyTasks => _weeklyTasks;
 
-  void addTask() {}
+  void addTask() {
+
+  }
 }
 

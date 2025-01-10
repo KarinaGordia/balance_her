@@ -1,15 +1,15 @@
-abstract class Task {
+class Task {
   Task({
     required this.name,
     required this.date,
     required this.type,
-    // required this.duration,
+    required this.duration,
   });
 
   final String name;
   final DateTime date;
   final TaskType type;
-  // final TaskDuration duration;
+  final TaskDuration duration;
   bool _isCompleted = false;
 
   bool get isCompleted => _isCompleted;
@@ -17,6 +17,12 @@ abstract class Task {
   void completeTask() {
     _isCompleted = !_isCompleted;
   }
+
+  @override
+  String toString() {
+    return 'Task{name: $name, date: $date, type: $type, duration: $duration, _isCompleted: $_isCompleted}';
+  }
+
 }
 
 enum TaskType {
@@ -25,12 +31,4 @@ enum TaskType {
   home,
 }
 
-// enum TaskDuration { daily, weekly }
-
-class DailyTask extends Task {
-  DailyTask({required super.name, required super.date, required super.type});
-}
-
-class WeeklyTask extends Task {
-  WeeklyTask({required super.name, required super.date, required super.type});
-}
+enum TaskDuration { daily, weekly }

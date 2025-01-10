@@ -1,7 +1,9 @@
 import 'package:balance_her/resources/resources.dart';
 import 'package:balance_her/ui/screens/tabs/tabs.dart';
 import 'package:balance_her/ui/theme/theme.dart';
+import 'package:balance_her/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
@@ -58,9 +60,76 @@ class _MainScreenState extends State<MainScreen> {
               changeableValue: selectedTaskDurationIndex,
               onSelected: model.setTaskDurationIndex,
             ),
+            const _TaskList(tasks: [],),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _TaskList extends StatelessWidget {
+  const _TaskList({super.key, required this.tasks});
+
+  final List<String> tasks;
+  //
+  // Future<void> _showAddTaskDialog() async {
+  //   return showDialog<void>(
+  //     context: context,
+  //     barrierDismissible: false, // user must tap button!
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: const Text('AlertDialog Title'),
+  //         content: const SingleChildScrollView(
+  //           child: ListBody(
+  //             children: <Widget>[
+  //               Text('This is a demo alert dialog.'),
+  //               Text('Would you like to approve of this message?'),
+  //             ],
+  //           ),
+  //         ),
+  //         actions: <Widget>[
+  //           TextButton(
+  //             child: const Text('Approve'),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        if(tasks.isEmpty)
+          const EmptyTabBanner(
+          imagePath: Images.home,
+          message:
+              'You don\'t have any tasks added,\nadd a task and it will appear here.',
+        ),
+        TextButton(
+          onPressed: () {},
+          child: Row(
+            children: [
+              const Icon(
+                Icons.add,
+                color: AppColors.blue,
+              ),
+              Text(
+                'Add task',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: AppColors.blue),
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

@@ -16,7 +16,7 @@ class FeatureOverviewScreen extends StatelessWidget {
       buttonLabel: 'Next',
       subtitle: const FeaturesWidget(),
       onButtonPressed: () {
-        Navigator.of(context).push(
+        Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => const StartScreen(),
           ),

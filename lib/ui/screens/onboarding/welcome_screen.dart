@@ -21,7 +21,7 @@ class WelcomeScreen extends StatelessWidget {
         style: OnboardingTextStyles.subtitle,
       ),
       onButtonPressed: () {
-        Navigator.of(context).push(
+        Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => const FeatureOverviewScreen(),
           ),
