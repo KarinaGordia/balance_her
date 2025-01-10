@@ -32,10 +32,8 @@ class _MainTabsScreenState extends State<MainTabsScreen> {
           index: _currentTabIndex,
           children: [
             ChangeNotifierProvider(
-              create: (_) => MainScreenViewModel(),
-              child: MainScreen(
-                primaryColor: primaryTabColor,
-              ),
+              create: (_) => MainScreenViewModel(primaryColor: primaryTabColor,),
+              child: const MainScreen(),
             ),
             const Text('health', style: TextStyle(color: Colors.red)),
             const Text('habits', style: TextStyle(color: Colors.red)),

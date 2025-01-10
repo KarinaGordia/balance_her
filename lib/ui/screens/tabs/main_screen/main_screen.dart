@@ -7,9 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key, required this.primaryColor});
-
-  final Color primaryColor;
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -21,6 +19,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final primaryColor = context.read<MainScreenViewModel>().primaryColor;
     final selectedTaskTypeIndex = context
         .select<MainScreenViewModel, int>((value) => value.taskTypeIndex);
     final selectedTaskDurationIndex = context
@@ -36,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
             child: FilledButton(
               onPressed: () {},
               style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(widget.primaryColor),),
+                  backgroundColor: WidgetStatePropertyAll(primaryColor),),
               child: Text(
                 'Add task',
                 style: Theme.of(context)
@@ -150,6 +149,7 @@ class _TasksProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final primaryColor = context.read<MainScreenViewModel>().primaryColor;
     return Container(
       height: 94,
       width: double.infinity,
@@ -160,6 +160,7 @@ class _TasksProgressBar extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             taskType,
@@ -167,6 +168,13 @@ class _TasksProgressBar extends StatelessWidget {
                 .textTheme
                 .bodyMedium
                 ?.copyWith(color: AppColors.secondary),
+          ),
+          LinearProgressIndicator(
+            backgroundColor: AppColors.outline8,
+            color: primaryColor,
+            borderRadius: BorderRadius.circular(16),
+            minHeight: 8,
+            value: completedTasksPercent / 100,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

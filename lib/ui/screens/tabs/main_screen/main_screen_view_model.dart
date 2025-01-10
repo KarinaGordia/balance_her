@@ -2,10 +2,15 @@ import 'package:balance_her/entity/task.dart';
 import 'package:flutter/widgets.dart';
 
 class MainScreenViewModel extends ChangeNotifier {
-  var _taskTypeIndex = 0;
-  int get taskTypeIndex => _taskTypeIndex;
+  final Color primaryColor;
 
+  MainScreenViewModel({required this.primaryColor});
+
+  var _taskTypeIndex = 0;
+
+  int get taskTypeIndex => _taskTypeIndex;
   var _taskDurationIndex = 0;
+
   int get taskDurationIndex => _taskDurationIndex;
 
   void setTaskTypeIndex(int value) {
@@ -17,9 +22,9 @@ class MainScreenViewModel extends ChangeNotifier {
     _taskDurationIndex = value;
     notifyListeners();
   }
-
   List<Task> _dailyTasks = [];
   List<Task> get dailyTasks => _dailyTasks;
+
   List<Task> _weeklyTasks = [];
   List<Task> get weeklyTasks => _weeklyTasks;
 
