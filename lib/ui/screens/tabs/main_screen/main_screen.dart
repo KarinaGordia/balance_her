@@ -256,17 +256,25 @@ class _TaskList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          if (tasks.isEmpty)
-            const EmptyTabBanner(
-              imagePath: Images.home,
-              message:
-                  'You don\'t have any tasks added,\nadd a task and it will appear here.',
-            ),
-        ],
+    if (tasks.isEmpty) {
+      return const Center(
+        child:  EmptyTabBanner(
+          imagePath: Images.home,
+          message:
+          'You don\'t have any tasks added,\nadd a task and it will appear here.',
+        ),
+      );
+    }
+
+    return Expanded(
+      child: ListView(
+        children: List.generate(30, (index) {
+          return Container(
+            height: 30,
+            color: index%2==0 ? Colors.purple : Colors.grey,
+          );
+        }),
+
       ),
     );
   }

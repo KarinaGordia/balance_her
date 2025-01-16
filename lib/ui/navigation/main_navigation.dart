@@ -1,3 +1,4 @@
+import 'package:balance_her/ui/screens/darfy.dart';
 import 'package:balance_her/ui/screens/main_tabs_screen/main_tabs_view_model.dart';
 import 'package:balance_her/ui/screens/main_tabs_screen/main_tabs_screen.dart';
 import 'package:balance_her/ui/screens/onboarding/welcome_screen.dart';
@@ -19,6 +20,7 @@ class MainNavigation {
       create: (_) => MainTabsViewModel(),
       child: const MainTabsScreen(),
     ),
+    // Screens.mainTabs: (context) => const DraftScreen(),
   };
 
   Route<dynamic>? onGenerateRoute(RouteSettings settings) {

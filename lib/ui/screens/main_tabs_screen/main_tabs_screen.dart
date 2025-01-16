@@ -27,19 +27,17 @@ class _MainTabsScreenState extends State<MainTabsScreen> {
     var primaryTabColor = model.setIndicatorColor(_currentTabIndex);
     return Scaffold(
       extendBody: true,
-      body: SafeArea(
-        child: IndexedStack(
-          index: _currentTabIndex,
-          children: [
-            ChangeNotifierProvider(
-              create: (_) => MainScreenViewModel(primaryColor: primaryTabColor,),
-              child: const MainScreen(),
-            ),
-            const Text('health', style: TextStyle(color: Colors.red)),
-            const Text('habits', style: TextStyle(color: Colors.red)),
-            const Text('settings', style: TextStyle(color: Colors.red)),
-          ],
-        ),
+      body: IndexedStack(
+        index: _currentTabIndex,
+        children: [
+          ChangeNotifierProvider(
+            create: (_) => MainScreenViewModel(primaryColor: primaryTabColor,),
+            child: const MainScreen(),
+          ),
+          const Text('health', style: TextStyle(color: Colors.red)),
+          const Text('habits', style: TextStyle(color: Colors.red)),
+          const Text('settings', style: TextStyle(color: Colors.red)),
+        ],
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(
