@@ -26,7 +26,7 @@ abstract class AppTheme {
     navigationBarTheme: const NavigationBarThemeData(
       iconTheme: WidgetStatePropertyAll(
         IconThemeData(
-          color: AppColors.onSecondaryDark40,
+          color: AppColors.onSecondaryDark,
         ),
       ),
     ),
