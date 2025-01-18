@@ -308,10 +308,10 @@ class _TaskRow extends StatelessWidget {
         minHeight: 46,
       ),
       child: DecoratedBox(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
-                color: AppColors.outline12,
+                color: 
               ),
             ),
         ),
