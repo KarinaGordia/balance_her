@@ -298,19 +298,33 @@ class _TaskRow extends StatelessWidget {
 
   final String name;
   final DateTime date;
-  final bool isComplete = false;
+  final bool isComplete = true;
 
   @override
   Widget build(BuildContext context) {
     final primaryColor = context.read<MainScreenViewModel>().primaryColor;
+    final taskNameTextStyle = isComplete
+        ? Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: AppColors.onPrimary,
+              decoration: TextDecoration.lineThrough,
+              decorationColor: AppColors.onPrimary,
+              decorationThickness: 1,
+            )
+        : Theme.of(context)
+            .textTheme
+            .bodyMedium
+            ?.copyWith(color: AppColors.secondary);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         isComplete
             ? Icon(Icons.check_box, color: primaryColor)
-            : const Icon(Icons.check_box_outline_blank, color: AppColors.onPrimary,),
-        const SizedBox(width: 3,),
+            : const Icon(
+                Icons.check_box_outline_blank,
+                color: AppColors.onPrimary,
+              ),
+
         Expanded(
           child: DecoratedBox(
             decoration: const BoxDecoration(
@@ -321,17 +335,11 @@ class _TaskRow extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 3),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(color: AppColors.secondary),
-                  ),
+                  Text(name, style: taskNameTextStyle),
                   Text(
                     '16.01.2025',
                     style: Theme.of(context)
@@ -344,6 +352,8 @@ class _TaskRow extends StatelessWidget {
             ),
           ),
         ),
+        if(isComplete)
+          const Icon(Icons.close, color: AppColors.red, size: 20,),
       ],
     );
   }
