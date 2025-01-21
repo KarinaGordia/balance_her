@@ -303,41 +303,48 @@ class _TaskRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final primaryColor = context.read<MainScreenViewModel>().primaryColor;
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        minHeight: 46,
-      ),
-      child: DecoratedBox(
-        decoration: const BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: AppColors.outline12,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        isComplete
+            ? Icon(Icons.check_box, color: primaryColor)
+            : const Icon(Icons.check_box_outline_blank, color: AppColors.onPrimary,),
+        const SizedBox(width: 3,),
+        Expanded(
+          child: DecoratedBox(
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: AppColors.outline12,
+                ),
               ),
             ),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            isComplete
-                ? Icon(Icons.check_box, color: primaryColor)
-                : const Icon(Icons.check_box_outline_blank, color: AppColors.onPrimary,),
-            Text(
-              name,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: AppColors.secondary),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    name,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: AppColors.secondary),
+                  ),
+                  Text(
+                    '16.01.2025',
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge
+                        ?.copyWith(color: AppColors.onPrimary),
+                  ),
+                ],
+              ),
             ),
-            Text(
-              '16.01.2025',
-              style: Theme.of(context)
-                  .textTheme
-                  .labelLarge
-                  ?.copyWith(color: AppColors.onPrimary),
-            ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
