@@ -35,17 +35,6 @@ class Task {
         return TaskType.work;
     }
   }
-
-  static TaskDuration getDurationByIndex(int index) {
-    switch (index) {
-      case 0:
-        return TaskDuration.daily;
-      case 1:
-        return TaskDuration.weekly;
-      default:
-        return TaskDuration.daily;
-    }
-  }
 }
 
 enum TaskType {

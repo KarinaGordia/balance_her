@@ -30,7 +30,7 @@ class _MainTabsScreenState extends State<MainTabsScreen> {
       body: IndexedStack(
         index: _currentTabIndex,
         children: [
-          ChangeNotifierProvider<MainScreenViewModel>(
+          ChangeNotifierProvider(
             create: (_) => MainScreenViewModel(primaryColor: primaryTabColor,),
             builder: (context, child) =>  const MainScreen(),
           ),

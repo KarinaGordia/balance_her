@@ -4,7 +4,6 @@ import 'package:balance_her/ui/screens/tabs/tabs.dart';
 import 'package:balance_her/ui/theme/theme.dart';
 import 'package:balance_her/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
@@ -15,8 +14,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final List<String> _taskCategories = ['Work', 'Meetings', 'Home'];
-  final List<String> _taskDurationTypes = ['Daily', 'Weekly'];
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +36,14 @@ class _MainScreenState extends State<MainScreen> {
             Center(child: Image.asset(Images.homeTab)),
             const SizedBox(height: 8),
             _TaskTypeChipRow(
-              chipTypes: _taskCategories,
+              chipTypes: model.taskCategories,
               changeableValue: selectedTaskTypeIndex,
               onSelected: model.setTaskTypeIndex,
             ),
             const SizedBox(height: 8),
             _TasksProgressBar(
-                taskType: _taskCategories[selectedTaskTypeIndex],
-                taskDuration: _taskDurationTypes[selectedTaskDurationIndex],
+                taskType: model.taskCategories[selectedTaskTypeIndex],
+                taskDuration: model.taskDurationTypes[selectedTaskDurationIndex],
                 completedTasksPercent: 0),
             const SizedBox(height: 8),
             Text(
@@ -59,13 +57,11 @@ class _MainScreenState extends State<MainScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _TaskTypeChipRow(
-                  chipTypes: _taskDurationTypes,
+                  chipTypes: model.taskDurationTypes,
                   changeableValue: selectedTaskDurationIndex,
                   onSelected: model.setTaskDurationIndex,
                 ),
-                _AddTaskButton(
-                  categories: _taskCategories,
-                ),
+                const _AddTaskButton(),
               ],
             ),
             _TaskList(
@@ -86,17 +82,17 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class _AddTaskButton extends StatelessWidget {
-  const _AddTaskButton({super.key, required this.categories});
-
-  final List<String> categories;
+  const _AddTaskButton();
 
   Future<void> _showAddTaskDialog(BuildContext context) async {
+    final mainScreenViewModel = context.read<MainScreenViewModel>();
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
-        return AddTaskDialog(
-          categories: categories,
+        return ChangeNotifierProvider.value(
+          value: mainScreenViewModel,
+          builder: (context, _) => const AddTaskDialog(),
         );
       },
     );
@@ -127,7 +123,6 @@ class _AddTaskButton extends StatelessWidget {
 
 class _TasksProgressBar extends StatelessWidget {
   const _TasksProgressBar({
-    super.key,
     required this.taskType,
     required this.completedTasksPercent,
     required this.taskDuration,
@@ -193,8 +188,7 @@ class _TasksProgressBar extends StatelessWidget {
 
 class _TaskTypeChipRow extends StatefulWidget {
   _TaskTypeChipRow(
-      {super.key,
-      required this.chipTypes,
+      {required this.chipTypes,
       required this.changeableValue,
       this.onSelected});
 
@@ -235,8 +229,7 @@ class _TaskTypeChipRowState extends State<_TaskTypeChipRow> {
 
 class _TaskTypeChip extends StatelessWidget {
   const _TaskTypeChip(
-      {super.key,
-      required this.selected,
+      {required this.selected,
       this.onSelected,
       required this.label});
 
@@ -262,7 +255,7 @@ class _TaskTypeChip extends StatelessWidget {
 }
 
 class _TaskList extends StatelessWidget {
-  const _TaskList({super.key, required this.tasks});
+  const _TaskList({required this.tasks});
 
   final List<Task> tasks;
 
@@ -291,7 +284,6 @@ class _TaskList extends StatelessWidget {
 
 class _TaskRow extends StatelessWidget {
   const _TaskRow({
-    super.key,
     required this.name,
     required this.date,
   });
@@ -324,7 +316,6 @@ class _TaskRow extends StatelessWidget {
                 Icons.check_box_outline_blank,
                 color: AppColors.onPrimary,
               ),
-
         Expanded(
           child: DecoratedBox(
             decoration: const BoxDecoration(
@@ -352,8 +343,12 @@ class _TaskRow extends StatelessWidget {
             ),
           ),
         ),
-        if(isComplete)
-          const Icon(Icons.close, color: AppColors.red, size: 20,),
+        if (isComplete)
+          const Icon(
+            Icons.close,
+            color: AppColors.red,
+            size: 20,
+          ),
       ],
     );
   }
