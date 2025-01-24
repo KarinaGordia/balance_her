@@ -16,7 +16,8 @@ class MainScreenViewModel extends ChangeNotifier {
   final List<String> taskCategories = ['Work', 'Meetings', 'Home'];
   final List<String> taskDurationTypes = ['Daily', 'Weekly'];
 
-  String get today => DateFormat('dd.MM.yyyy').format(DateTime.now());
+  //String get today => formatDate(DateTime.now());
+
   var _taskTypeIndex = 0;
   int get taskTypeIndex => _taskTypeIndex;
 
@@ -26,6 +27,17 @@ class MainScreenViewModel extends ChangeNotifier {
   final taskNameController = TextEditingController();
 
   int taskTypeTabIndex = 0;
+
+  String formatDate(DateTime date) => DateFormat('dd.MM.yyyy').format(date);
+
+  DateTime selectedDate = DateTime.now();
+
+  String get selectedDateFormatted => formatDate(selectedDate);
+
+  void setSelectedDate(DateTime date) {
+    selectedDate = date;
+    notifyListeners();
+  }
 
   void setTaskTypeIndex(int value) {
     _taskTypeIndex = value;
@@ -48,13 +60,10 @@ class MainScreenViewModel extends ChangeNotifier {
       return;
     }
 
+    _taskService.createTask(name, type, duration, selectedDate);
 
-    _taskService.createTask(name, type, duration);
-
-    //обнуляем индекс
-    taskNameController.clear();
-    _taskTypeIndex = 0;
-    //call task service
+    //обнуляем диалог
+    clearDialog();
   }
 
   void completeTask(Task task) {
@@ -64,6 +73,12 @@ class MainScreenViewModel extends ChangeNotifier {
 
   void deleteTask(Task task) {
     //call task service
+  }
+
+  void clearDialog() {
+    taskNameController.clear();
+    _taskTypeIndex = 0;
+    selectedDate = DateTime.now();
   }
 }
 

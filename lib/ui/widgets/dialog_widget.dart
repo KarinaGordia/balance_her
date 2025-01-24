@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:balance_her/ui/screens/tabs/tabs.dart';
 import 'package:balance_her/ui/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class AddTaskDialog extends StatefulWidget {
@@ -80,6 +81,7 @@ class _DialogTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = context.read<MainScreenViewModel>();
     return ConstrainedBox(
       constraints: const BoxConstraints(maxHeight: 36),
       child: Row(
@@ -101,6 +103,7 @@ class _DialogTitle extends StatelessWidget {
                   backgroundColor: WidgetStatePropertyAll(AppColors.outline8),
                 ),
                 onPressed: () {
+                  model.clearDialog();
                   Navigator.of(context).pop();
                 },
                 icon: const Icon(Icons.close_rounded)),
@@ -182,9 +185,30 @@ class _TaskNameInputField extends StatelessWidget {
 class _TaskDatePicker extends StatelessWidget {
   const _TaskDatePicker({super.key});
 
+  Future<void> _selectDate(BuildContext context) async {
+    final model = context.read<MainScreenViewModel>();
+    DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2100));
+
+    if(picked != null) {
+      model.setSelectedDate(picked);
+    }
+    // log(picked.toString());
+    // if (picked != null) {
+    //   model.selectedDate = picked;
+    //   final formatedDate = model.formatDate(picked);
+    //   log(picked.toString());
+    //   log(picked.toString());
+    // }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final model = context.read<MainScreenViewModel>();
+    final date =
+        context.select((MainScreenViewModel value) => value.selectedDateFormatted);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -195,10 +219,37 @@ class _TaskDatePicker extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
+        // TextField(
+        //   controller: _dateController,
+        //   decoration: InputDecoration(
+        //     labelText: model.today,
+        //     labelStyle: Theme.of(context)
+        //         .textTheme
+        //         .bodyMedium
+        //         ?.copyWith(color: AppColors.secondary),
+        //     floatingLabelBehavior: FloatingLabelBehavior.never,
+        //     filled: true,
+        //     fillColor: AppColors.outline8,
+        //     prefixIcon: const Icon(
+        //       Icons.calendar_month,
+        //       color: AppColors.primary,
+        //     ),
+        //     enabledBorder: OutlineInputBorder(
+        //         borderRadius: BorderRadius.circular(16),
+        //         borderSide: BorderSide.none),
+        //     focusedBorder: OutlineInputBorder(
+        //         borderRadius: BorderRadius.circular(16),
+        //         borderSide: BorderSide.none),
+        //   ),
+        //   readOnly: true,
+        //   onTap: () {
+        //     _selectDate();
+        //   },
+        // ),
         FilledButton.icon(
-          onPressed: () {},
+          onPressed: () => _selectDate(context),
           label: Text(
-            model.today,
+            date,
             style: Theme.of(context)
                 .textTheme
                 .bodyMedium
