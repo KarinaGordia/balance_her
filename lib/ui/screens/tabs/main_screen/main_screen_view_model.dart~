@@ -16,7 +16,7 @@ class MainScreenViewModel extends ChangeNotifier {
   final List<String> taskCategories = ['Work', 'Meetings', 'Home'];
   final List<String> taskDurationTypes = ['Daily', 'Weekly'];
 
-  String get today => DateFormat('dd.MM.yyyy').format(DateTime.now());
+  final String today = DateFormat('dd.MM.yyyy').format(DateTime.now());
   var _taskTypeIndex = 0;
   int get taskTypeIndex => _taskTypeIndex;
 

@@ -32,7 +32,6 @@ dependencies:
     sdk: flutter
   spider: ^4.2.2
   provider: ^6.1.2
-  intl: ^0.20.1
   flutter_svg: ^2.0.15
 
 

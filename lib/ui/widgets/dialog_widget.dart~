@@ -184,7 +184,6 @@ class _TaskDatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = context.read<MainScreenViewModel>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -198,7 +197,7 @@ class _TaskDatePicker extends StatelessWidget {
         FilledButton.icon(
           onPressed: () {},
           label: Text(
-            model.today,
+            '15.01.2025',
             style: Theme.of(context)
                 .textTheme
                 .bodyMedium
